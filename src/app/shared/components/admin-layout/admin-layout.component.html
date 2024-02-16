@@ -1,0 +1,21 @@
+
+    <div class="header flex justify-between border-b border-solid bg-gray-100 text-gray-300 items-center px-6 mb-2 shadow-lg">
+        <div class="text-black">Logo</div>
+        <div class="text-black font-bold text-4xl">Mi IA</div>
+        <div></div>
+    </div>
+    <div class="column bg-gray-50 border-solid border-r top-0 left-0 absolute shadow-lg">
+
+        <nav class="flex justify-start gap-3 flex-wrap mt-12">
+            @for(m of menus; track m.id) {
+                <a class="  w-full mx-8 cursor-pointer py-2 px-3 rounded-xl bg-gray-100 text-xl transition-all shadow-sm" 
+                    [routerLink]="m.route" 
+                    [routerLinkActive]="'active text-blue-500 border-blue-300 shadow-md transition-all'">
+                    {{m.label}}
+                </a>
+            }
+        </nav>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>

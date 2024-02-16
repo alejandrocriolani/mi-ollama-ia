@@ -1,0 +1,28 @@
+<div class="llama-prompt">
+    <h2 class="text-xl font-bold">PROMPT</h2>
+    
+    <form [formGroup]="formGroup" (ngSubmit)="submitPromt()">
+    <div class="promt-container">
+        <div>
+            <input type="text" placeholder="¿Cuánto es 2 + 2?" formControlName="promtFC" class="py-2 px-4 rounded-xl bg-white border-solid border border-gray-400
+            focus:border-blue-600 focus:border-2 focus-visible:border-blue-600 focus-visible:border-2 active:border-blue-600 active:border-2">
+        </div>
+        <div>
+            <div class="flex gap-x-2 items-center ">
+                <label for="ia-model">Modelo de IA</label>
+                <select id="ia_model" formControlName="tipoFC" class="h-10 py-2 px-4 rounded-xl bg-white border-solid border border-gray-400
+                    focus:border-blue-600 focus:border-2">
+                    <option [value]="'llama2'">LLAMA 2</option>
+                    <option [value]="'codellama'">Codellama</option>
+                    <option [value]="'openchat'">Openchat</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <button type="submit" [disabled]="formGroup.invalid" class="h-10 py-2 px-4 rounded-xl bg-blue-500 text-white border-solid border border-gray-400
+             disabled:bg-slate-200 disabled:text-black disabled:cursor-not-allowed"
+            >Enviar</button>
+        </div>
+    </div>
+    </form>
+</div>
