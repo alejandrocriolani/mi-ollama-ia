@@ -4,7 +4,7 @@ import { Llama2Content } from '../../models/llama-response/llama2-content';
 @Injectable({
   providedIn: 'root'
 })
-export class sLlamaHandleResponseService {
+export class LlamaHandleResponseService {
 
   constructor() { }
 
