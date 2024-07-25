@@ -4,7 +4,8 @@
     
     <app-llama-2 (sendPromt)="callOllamaChat($event)" #chat2 class="mb-4"></app-llama-2>
     
-    <button class="my-3 h-10 py-2 px-4 rounded-xl bg-blue-500 text-white border-solid border border-blue-600" (click)="vaciarChat()">Vaciar chat</button>
+    <button class="my-3 h-10 py-2 px-4 rounded-xl bg-blue-500 text-white border-solid border border-blue-600" 
+        (click)="vaciarChat()">Vaciar chat</button>
 
     <app-chat-history class="mt-4" [messsages]="messsages"></app-chat-history>
 </div>

@@ -12,9 +12,12 @@
                 <label for="ia-model">Modelo de IA</label>
                 <select id="ia_model" formControlName="tipoFC" class="h-10 py-2 px-4 rounded-xl bg-white border-solid border border-gray-400
                     focus:border-blue-600 focus:border-2">
-                    <option [value]="'llama2'">LLAMA 2</option>
+                    <!-- <option [value]="'llama2'">LLAMA 2</option>
                     <option [value]="'codellama'">Codellama</option>
-                    <option [value]="'openchat'">Openchat</option>
+                    <option [value]="'openchat'">Openchat</option> -->
+                    @for(model of models; track model.name) {
+                        <option [value]="model.name">{{model.name}}</option>
+                    }
                 </select>
             </div>
         </div>

@@ -7,6 +7,8 @@ import { Llama2Data } from '../../models/llama-2-data';
 import { OllamaChatResponse } from '../../models/ollama-chat-response';
 import { OllamaChat } from '../../models/ollama-chat';
 import { OllamaChatRequest } from '../../models/ollama-chat-request';
+import { environment } from '../../../../environments/environment.development';
+import { Model, OllamaModel } from '../../models/ollama-model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,11 @@ import { OllamaChatRequest } from '../../models/ollama-chat-request';
 export class OllamaService {
 
   constructor(private http: HttpClient) { }
+
+  getLocalModels() : Observable<Model> {
+    let url: string = this.getOllamaApiUrl() + "tags";
+    return this.http.get<Model>(url);
+  }
 
   askOllama(data: Llama2Data) : Observable<OllamaResponse> {
     let req : OllamaRequest = {
@@ -23,7 +30,7 @@ export class OllamaService {
       stream: false
     }
 
-    let url: string = "http://127.0.0.1:11434/api/generate"
+    let url: string = this.getOllamaApiUrl() + "generate";
 
     return this.http.post<OllamaResponse>(url, req, {observe: 'body', responseType: "json"});
   }
@@ -50,11 +57,50 @@ export class OllamaService {
       stream: false
     }
 
-    let url: string = "http://127.0.0.1:11434/api/chat"
+    let url: string = this.getOllamaApiUrl() + "chat"
 
-    console.log(url, req);
 
     return this.http.post<OllamaChatResponse>(url, req, {observe: 'body', responseType: "json"});
+  }
+
+  chatOllamaStreamResult(data: Llama2Data, messages?: OllamaChat []): Observable<HttpEvent<string>> {
+    let url: string = this.getOllamaApiUrl() + "chat";
+    messages = this.makeMessages(data, messages);
+    let req = this.getRequest(data, messages, true)    
+
+    return this.http.post<string>(url, req, {observe: "events", responseType: 'json', reportProgress: true});
+  }
+
+  getOllamaApiUrl(): string {
+    return environment.baseUrl + "api/";
+  }
+
+  private makeMessages(data: Llama2Data, messages ?: OllamaChat []) : OllamaChat [] {
+    if(messages != null) {
+      messages.push(
+        {
+          role: "user",
+          content: data.prompt
+        }
+      )
+    } else {
+      messages = [{
+        role: "user",
+        content: data.prompt
+      }]
+    }
+    return messages;
+  }
+
+  private getRequest(data: Llama2Data, messages: OllamaChat[], stream?: boolean): OllamaChatRequest {
+    let req : OllamaChatRequest = {
+      model: data.tipo,
+      messages: messages,
+      format: 'json',
+      stream: stream || false
+    }
+
+    return req;
   }
 
 }

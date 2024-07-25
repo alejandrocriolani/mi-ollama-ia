@@ -6,6 +6,7 @@ import { OllamaChat } from '../../shared/models/ollama-chat';
 import { OllamaService } from '../../shared/services/api-services/ollama.service';
 import { LlamaHandleResponseService } from '../../shared/services/local-services/llama-handle-response.service';
 import { ChatHistoryComponent } from '../../shared/components/chat/chat-history/chat-history.component';
+import { HttpDownloadProgressEvent, HttpEvent, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-chat',
@@ -30,9 +31,45 @@ export class ChatComponent {
         role: res.message.role,
         parsedResponse: this.llamaHandleResponse.parseResponse(res.message.content)
       }
-      console.log(msgRes.parsedResponse);
+
       this.messsages.push(msgRes);
     });
+  }
+
+  callOllamaChatStream(data: Llama2Data) {
+    let msgRes: OllamaChat = {
+      idChat: this.messsages.length,
+      content: "",
+      role: "assistant",
+      parsedResponse: undefined
+    }
+
+    this.messsages.push(msgRes);
+    this.ollamaService.chatOllamaStreamResult(data, this.messsages).subscribe({
+      next: (event: HttpEvent<string>) => {
+        if (event.type === HttpEventType.DownloadProgress) {
+/*           let content: string;
+          if(msgRes.content) {
+            content = this.llamaHandleResponse.parseResponseStream((
+              event as HttpDownloadProgressEvent
+            ).partialText).message.content
+          } */
+          console.log(event);
+
+          msgRes.content+= this.llamaHandleResponse.parseResponseStream((
+            event as HttpDownloadProgressEvent
+          ).partialText ).message.content + "…";
+          console.log(msgRes);
+        } else if (event.type === HttpEventType.Response) {
+          console.log(event.body);
+          //msgRes.content = event.body || "" ;
+        }
+      },
+      error: (error) => {
+        console.error(error);
+        }
+      }
+    )
   }
 
   vaciarChat() {

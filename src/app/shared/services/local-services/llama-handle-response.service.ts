@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Llama2Content } from '../../models/llama-response/llama2-content';
+import { OllamaChatResponse } from '../../models/ollama-chat-response';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,22 @@ export class LlamaHandleResponseService {
       console.error(error);
     }
     return undefined;
+  }
+
+  parseResponseStream(base64?: string) : OllamaChatResponse {
+    if(base64) {
+      let text: string = btoa(base64);
+      return JSON.parse(text);
+    }
+    return {
+      model: "",
+      created_at: new Date(Date.now()),
+      message: {
+        role: "assistant",
+        content: ""
+      },
+      done: false
+    };
   }
 
   isResponseType(response: string, type: ResponseType) {
