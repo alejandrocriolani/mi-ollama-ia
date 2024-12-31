@@ -12,19 +12,18 @@ import { MatrixResultComponent } from '../matrix-result/matrix-result.component'
 import { AnswersResultComponent } from '../answers-result/answers-result.component';
 
 @Component({
-  selector: 'app-chat-history',
-  standalone: true,
-  imports: [
-    BasicResultComponent,
-    BasicResponseComponent,
-    ChatResultComponent,
-    MessageResultComponent,
-    AnswerResultComponent,
-    AnswersResultComponent,
-    MatrixResultComponent
-  ],
-  templateUrl: './chat-history.component.html',
-  styleUrl: './chat-history.component.scss'
+    selector: 'app-chat-history',
+    imports: [
+        BasicResultComponent,
+        BasicResponseComponent,
+        ChatResultComponent,
+        MessageResultComponent,
+        AnswerResultComponent,
+        AnswersResultComponent,
+        MatrixResultComponent
+    ],
+    templateUrl: './chat-history.component.html',
+    styleUrl: './chat-history.component.scss'
 })
 export class ChatHistoryComponent {
   //@Input() messsages: OllamaChat [] = [];

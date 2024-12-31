@@ -2,10 +2,9 @@ import { Component, Input } from '@angular/core';
 //import { Llama2Content } from '../../../models/llama-response/llama2-content';
 
 @Component({
-  selector: 'app-basic-response',
-  standalone: true,
-  imports: [],
-  template: `
+    selector: 'app-basic-response',
+    imports: [],
+    template: `
     <div>
       <ol>
         @for(item of parsedResponse?.answers; track item) {
@@ -14,7 +13,7 @@ import { Component, Input } from '@angular/core';
       </ol>
     </div>
   `,
-  styles: ``
+    styles: ``
 })
 export class BasicResponseComponent {
   //@Input() parsedResponse?: Llama2Content;

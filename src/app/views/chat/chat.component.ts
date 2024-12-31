@@ -5,11 +5,10 @@ import { LlamaHandleResponseService } from '../../shared/services/local-services
 import { ChatHistoryComponent } from '../../shared/components/chat/chat-history/chat-history.component';
 
 @Component({
-  selector: 'app-chat',
-  standalone: true,
-  imports: [Llama2Component, ChatHistoryComponent],
-  templateUrl: './chat.component.html',
-  styleUrl: './chat.component.scss'
+    selector: 'app-chat',
+    imports: [Llama2Component, ChatHistoryComponent],
+    templateUrl: './chat.component.html',
+    styleUrl: './chat.component.scss'
 })
 export class ChatComponent {
 

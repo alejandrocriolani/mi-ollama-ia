@@ -6,15 +6,15 @@ import {} from '@angular/common/http';
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule, 
-    RouterOutlet,
-    AdminLayoutComponent,
-    Llama2Component],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [
+        CommonModule,
+        RouterOutlet,
+        //AdminLayoutComponent,
+        //Llama2Component
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'mi-ollama-ia';

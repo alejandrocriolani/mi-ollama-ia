@@ -5,14 +5,13 @@ import { OllamaService } from '../../services/api-services/ollama.service';
 import { OllamaModel } from '../../models/ollama-model';
 
 @Component({
-  selector: 'app-llama-2',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  templateUrl: './llama-2.component.html',
-  styleUrl: './llama-2.component.scss'
+    selector: 'app-llama-2',
+    imports: [
+        FormsModule,
+        ReactiveFormsModule
+    ],
+    templateUrl: './llama-2.component.html',
+    styleUrl: './llama-2.component.scss'
 })
 export class Llama2Component implements OnInit {
 

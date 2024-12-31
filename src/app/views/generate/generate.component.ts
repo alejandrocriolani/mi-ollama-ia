@@ -9,11 +9,10 @@ import { HttpDownloadProgressEvent, HttpEvent, HttpEventType } from '@angular/co
 
 
 @Component({
-  selector: 'app-generate',
-  standalone: true,
-  imports: [Llama2Component],
-  templateUrl: './generate.component.html',
-  styleUrl: './generate.component.scss'
+    selector: 'app-generate',
+    imports: [Llama2Component],
+    templateUrl: './generate.component.html',
+    styleUrl: './generate.component.scss'
 })
 export class GenerateComponent {
   preguntasRespuestas: { id: number; prompt: string; response?: OllamaResponse} [] = [];

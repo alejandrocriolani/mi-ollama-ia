@@ -2,10 +2,9 @@ import { Component, Input } from '@angular/core';
 //import { Llama2Content } from '../../../models/llama-response/llama2-content';
 
 @Component({
-  selector: 'app-matrix-result',
-  standalone: true,
-  imports: [],
-  template: `
+    selector: 'app-matrix-result',
+    imports: [],
+    template: `
     <div>Dimensión: {{ parsedResponse?.dimension }}</div>
     <div>Matriz:</div>
     @for(fila of parsedResponse?.elements; track fila) {
@@ -16,7 +15,7 @@ import { Component, Input } from '@angular/core';
       </div>
     }
   `,
-  styles: ``,
+    styles: ``
 })
 export class MatrixResultComponent {
   //@Input() parsedResponse?: Llama2Content;
