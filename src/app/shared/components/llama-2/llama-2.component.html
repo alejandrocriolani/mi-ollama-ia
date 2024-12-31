@@ -34,20 +34,16 @@
                     </div>
                 </div>
                 <div>
-                    <button type="submit" [disabled]="formGroup.invalid" class="mr-4 h-10 py-2 px-4 rounded-xl bg-blue-500 text-white border-solid border border-gray-400
+<!--                     <button type="submit" [disabled]="formGroup.invalid" class="mr-4 h-10 py-2 px-4 rounded-xl bg-blue-500 text-white border-solid border border-gray-400
+                    disabled:bg-slate-200 disabled:text-black disabled:cursor-not-allowed"
+                    >Enviar</button> -->
+        
+                    <button type="button" (click)="submitStreamedPromt()" [disabled]="formGroup.invalid" class="mr-4 h-10 py-2 px-4 rounded-xl bg-blue-500 text-white border-solid border border-gray-400
                     disabled:bg-slate-200 disabled:text-black disabled:cursor-not-allowed"
                     >Enviar</button>
-        
-                    <button type="button" (click)="submitStreamedPromt()" [disabled]="formGroup.invalid" class="h-10 py-2 px-4 rounded-xl bg-blue-500 text-white border-solid border border-gray-400
-                    disabled:bg-slate-200 disabled:text-black disabled:cursor-not-allowed"
-                    >Enviar (Stream)</button>
-                </div>
-                <div>
-                    <div>
-                        <button type="button" class="mr-4 h-10 py-2 px-4 rounded-xl border-solid border border-gray-400
-                                    disabled:bg-slate-200 disabled:text-black disabled:cursor-not-allowed" (click)="clearChat()"
-                        >Limpiar</button>
-                    </div>
+                    <button type="button" class="h-10 py-2 px-4 rounded-xl border-solid border border-gray-400
+                                disabled:bg-slate-200 disabled:text-black disabled:cursor-not-allowed" (click)="clearChat()"
+                    >Limpiar</button>
                 </div>
             </div>
         </div>

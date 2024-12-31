@@ -1,64 +1,18 @@
 <div class="my-4">
-    @for(chat of messsages; track chat.idChat) {
-        <section>
-          <div>
-            <b>{{chat.role == responeRol.USER ? "Usuario" : "Asistente"}}</b>
-            @switch (chat.parsedResponse?.type) {
-              @case (responseTypes.NO_TYPE) {
-                <app-basic-result [parsedResponse]="chat.parsedResponse"/>
-              } @case (responseTypes.RESPONSE) {
-                <app-basic-response [parsedResponse]="chat.parsedResponse"/>
-              } @case (responseTypes.MESSAGE) {
-                <app-message-result [parsedResponse]="chat.parsedResponse"/>
-              } @case (responseTypes.CHAT) {
-                <app-chat-result [parsedResponse]="chat.parsedResponse"/>
-              } @case ("Question") {
-                <div><em>{{chat.parsedResponse?.question || chat.parsedResponse?.name}}</em></div>
-                <div>
-                    @if(chat?.parsedResponse?.answer?.type == "Explanation") {
-                        <span>{{chat?.parsedResponse?.answer?.explanation}}</span>
-                    } @else if(chat?.parsedResponse?.answer?.type == "Answer") {
-                        <span>{{chat?.parsedResponse?.answer?.text}}</span>
-                    } @else if (chat?.parsedResponse?.answer?.type == "List") {
-                        <ol>
-                            @for(item of chat?.parsedResponse?.answer?.items; track item) {
-                                <li>{{item}}</li>
-                            }
-                        </ol>
-                    } @else if (chat?.parsedResponse?.acceptedAnswer) {
-                        <span>{{chat?.parsedResponse?.acceptedAnswer?.text}}</span>
-                    } @else if(chat?.parsedResponse?.answers) {
-                        <ol>
-                            @for(item of chat?.parsedResponse?.answers; track item) {
-                                <li>{{item.text}}</li>
-                            }
-                        </ol>
-                    } @else {
-                        {{chat.content}}
-                    }
-                </div>
-              }
-              @case (responseTypes.ANSWER) {
-                <app-answer-result [parsedResponse]="chat.parsedResponse"/>
-              }
-              @case (responseTypes.ANSWER) {
-                <app-answers-result  [parsedResponse]="chat.parsedResponse"/>
-              }
-              @case (responseTypes.MATRIX) {
-                <app-matrix-result [parsedResponse]="chat.parsedResponse"/>
-              }
-              @default {
-                @if(chat.parsedResponse?.message) {
-                  {{chat.parsedResponse?.message}}
-                } @else {
-                  {{chat.content}}
-                }
-              }
-            }
-      
-            <span>
-            </span>
-          </div>
-        </section>
-      }
+  @for (msg of messsages; track msg.id) {
+    @if(msg.chatMessage?.role === 'user') {
+      <div class="flex justify-end">
+        <div class="bg-blue-500 text-white p-2 rounded-xl">
+          {{msg.chatMessage?.content}}
+        </div>
+      </div>
+    } @else {
+      <div class="flex justify-start">
+        <div class="bg-gray-200 p-2 rounded-xl">
+          {{msg.chatMessage?.content}}
+        </div>
+      </div>
+    }
+  }
+
 </div>

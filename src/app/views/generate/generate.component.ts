@@ -7,6 +7,7 @@ import { Llama2Data } from '../../shared/models/llama-2-data';
 import { OllamaBasicRequest } from '../../shared/models/ollama-basic-request';
 import { HttpDownloadProgressEvent, HttpEvent, HttpEventType } from '@angular/common/http';
 import { OllamaStreamedRequest } from '../../shared/models/ollama-streamed-request';
+import { Historial } from '../../shared/models/historial';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { OllamaStreamedRequest } from '../../shared/models/ollama-streamed-reque
     styleUrl: './generate.component.scss'
 })
 export class GenerateComponent {
-  preguntasRespuestas: { id: number; prompt: string; response?: OllamaResponse} [] = [];
+  preguntasRespuestas: Historial [] = [];
 
   constructor(
     private ollamaService: OllamaService,
@@ -28,7 +29,7 @@ export class GenerateComponent {
 
   callOllama(data: Llama2Data) {
 
-    let pr: { id: number; prompt: string; response?: OllamaResponse} = {
+    let pr: Historial = {
       id: this.preguntasRespuestas.length,
       prompt: data.prompt
     }

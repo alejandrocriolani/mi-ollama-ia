@@ -2,10 +2,10 @@
     
     <h2 class="text-3xl font-semibold mb-4">Chat</h2>
     
-    <app-llama-2 (sendPromt)="callOllamaChat($event)" #chat2 class="mb-4"></app-llama-2>
+    <app-llama-2 
+        (clear)="vaciarChat()"
+        (sendStreamPromt)="callOllamaChatStream($event)"
+        (sendPromt)="callOllamaChat($event)" #chat2 class="mb-4"></app-llama-2>
     
-    <button class="my-3 h-10 py-2 px-4 rounded-xl bg-blue-500 text-white border-solid border border-blue-600" 
-        (click)="vaciarChat()">Vaciar chat</button>
-
-    <app-chat-history class="mt-4" [messsages]="messsages"></app-chat-history>
+    <app-chat-history class="mt-4" [messsages]="historial"></app-chat-history>
 </div>
