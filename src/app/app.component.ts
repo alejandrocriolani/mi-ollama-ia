@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { Llama2Component } from './shared/components/llama-2/llama-2.component';
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
 
 @Component({
@@ -12,7 +12,6 @@ import { AdminLayoutComponent } from './shared/components/admin-layout/admin-lay
     CommonModule, 
     RouterOutlet,
     AdminLayoutComponent,
-    HttpClientModule,
     Llama2Component],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
