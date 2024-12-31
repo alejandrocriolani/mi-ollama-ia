@@ -1,13 +1,20 @@
-<div class="mx-4">
+<div class="m-4">
     <h2 class="text-3xl font-semibold mb-4">Generate</h2>
         
-    <app-llama-2 (sendPromt)="callOllama($event)" (sendStreamPromt)="callOllamaStreamed($event)" #chat1></app-llama-2>
+    <app-llama-2 
+        (clear)="limpiar()"
+        (sendPromt)="callOllama($event)" 
+        (sendStreamPromt)="callOllamaStreamed($event)" #chat1></app-llama-2>
     
+
+
+
     @for(pr of preguntasRespuestas; track pr.id) {
         <section>
-        <h4>Pregunta: {{pr.prompt}}</h4>
+        <h4><b>Pregunta: </b>{{pr.prompt}}</h4>
         <p>
-            {{pr?.response?.response}}
+            <b>Respuesta: </b>
+            <span [innerText]="pr.response?.response"></span>
         </p>
         </section>
     }

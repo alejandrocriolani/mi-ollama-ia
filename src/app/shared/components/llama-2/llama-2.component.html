@@ -1,35 +1,55 @@
 <div class="llama-prompt">
-    <h2 class="text-xl font-bold">PROMPT</h2>
+   <!--  <h3 class="text-xl font-bold mb-4">Prompt</h3> -->
     
     <form [formGroup]="formGroup" (ngSubmit)="submitPromt()">
-    <div class="promt-container">
-        <div>
-            <input type="text" placeholder="¿Cuánto es 2 + 2?" formControlName="promtFC" class="py-2 px-4 rounded-xl bg-white border-solid border border-gray-400
-            focus:border-blue-600 focus:border-2 focus-visible:border-blue-600 focus-visible:border-2 active:border-blue-600 active:border-2">
-        </div>
-        <div>
-            <div class="flex gap-x-2 items-center ">
-                <label for="ia-model">Modelo de IA</label>
-                <select id="ia_model" formControlName="modelFC" class="h-10 py-2 px-4 rounded-xl bg-white border-solid border border-gray-400
-                    focus:border-blue-600 focus:border-2">
-                    <!-- <option [value]="'llama2'">LLAMA 2</option>
-                    <option [value]="'codellama'">Codellama</option>
-                    <option [value]="'openchat'">Openchat</option> -->
-                    @for(model of models; track model.name) {
-                        <option [value]="model.name">{{model.name}}</option>
-                    }
-                </select>
+        <div class="promt-container w-full mb-4">
+            <div class="flex-1">
+                <div>
+                    <label for="ia_promt">Promt</label>
+                </div>
+                <div class="w-full">
+                    <textarea id="ia_promt" placeholder="¿Cuánto es 2 + 2?" formControlName="promtFC" 
+                        [rows]="5"
+                        class="w-full py-2 px-4 rounded-xl bg-white border-solid border border-gray-400
+                        focus:border-blue-600 focus:border-2 focus-visible:border-blue-600 focus-visible:border-2 active:border-blue-600 active:border-2">
+                    </textarea>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-y-2 flex-col content-between">
+                <div>
+                    <div>
+                        <label for="ia-model">Modelo de IA</label>
+                    </div>
+                    <div>
+                        <select id="ia_model" formControlName="modelFC" class="w-full h-10 py-2 px-4 rounded-xl bg-white border-solid border border-gray-400
+                            focus:border-blue-600 focus:border-2">
+                            <!-- <option [value]="'llama2'">LLAMA 2</option>
+                            <option [value]="'codellama'">Codellama</option>
+                            <option [value]="'openchat'">Openchat</option> -->
+                            @for(model of models; track model.name) {
+                                <option [value]="model.name">{{model.name}}</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" [disabled]="formGroup.invalid" class="mr-4 h-10 py-2 px-4 rounded-xl bg-blue-500 text-white border-solid border border-gray-400
+                    disabled:bg-slate-200 disabled:text-black disabled:cursor-not-allowed"
+                    >Enviar</button>
+        
+                    <button type="button" (click)="submitStreamedPromt()" [disabled]="formGroup.invalid" class="h-10 py-2 px-4 rounded-xl bg-blue-500 text-white border-solid border border-gray-400
+                    disabled:bg-slate-200 disabled:text-black disabled:cursor-not-allowed"
+                    >Enviar (Stream)</button>
+                </div>
+                <div>
+                    <div>
+                        <button type="button" class="mr-4 h-10 py-2 px-4 rounded-xl border-solid border border-gray-400
+                                    disabled:bg-slate-200 disabled:text-black disabled:cursor-not-allowed" (click)="clearChat()"
+                        >Limpiar</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div>
-            <button type="submit" [disabled]="formGroup.invalid" class="mr-4 h-10 py-2 px-4 rounded-xl bg-blue-500 text-white border-solid border border-gray-400
-             disabled:bg-slate-200 disabled:text-black disabled:cursor-not-allowed"
-            >Enviar</button>
-
-            <button type="button" (click)="submitStreamedPromt()" [disabled]="formGroup.invalid" class="h-10 py-2 px-4 rounded-xl bg-blue-500 text-white border-solid border border-gray-400
-             disabled:bg-slate-200 disabled:text-black disabled:cursor-not-allowed"
-            >Enviar (Stream)</button>
-        </div>
-    </div>
     </form>
 </div>

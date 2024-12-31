@@ -17,6 +17,7 @@ export class Llama2Component implements OnInit {
 
   @Output() sendPromt = new EventEmitter<Llama2Data>();
   @Output() sendStreamPromt = new EventEmitter<Llama2Data>();
+  @Output() clear = new EventEmitter();
 
   models: OllamaModel [] = [];
 
@@ -55,4 +56,9 @@ export class Llama2Component implements OnInit {
     this.formGroup.controls['promtFC'].setValue('');
     this.sendStreamPromt.emit(data);
   }
+
+  clearChat() {
+    this.clear.emit();
+  }
+
 }

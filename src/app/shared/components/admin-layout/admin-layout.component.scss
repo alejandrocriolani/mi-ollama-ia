@@ -19,5 +19,7 @@
 
 .content {
     margin-left: 300px;
+    height: calc(100dvh - 64px);
+    overflow-y: auto;
     //z-index: -20;
 }

@@ -6,6 +6,7 @@ import { OllamaResponse } from '../../shared/models/ollama-response';
 import { Llama2Data } from '../../shared/models/llama-2-data';
 import { OllamaBasicRequest } from '../../shared/models/ollama-basic-request';
 import { HttpDownloadProgressEvent, HttpEvent, HttpEventType } from '@angular/common/http';
+import { OllamaStreamedRequest } from '../../shared/models/ollama-streamed-request';
 
 
 @Component({
@@ -20,6 +21,10 @@ export class GenerateComponent {
   constructor(
     private ollamaService: OllamaService,
     private llamaHandleResponse: LlamaHandleResponseService) {}
+
+  limpiar() {
+    this.preguntasRespuestas = [];
+  }
 
   callOllama(data: Llama2Data) {
 
@@ -46,9 +51,9 @@ export class GenerateComponent {
 
     this.preguntasRespuestas.push(pr);
 
-    let ollamaReq: OllamaBasicRequest = new OllamaBasicRequest(data.model, data.prompt);
+    let ollamaReq: OllamaStreamedRequest = new OllamaStreamedRequest(data.model, data.prompt);
 
-    this.ollamaService.generateStreamedResponse(ollamaReq).subscribe( {
+   /*  this.ollamaService.generateStreamedResponse(ollamaReq).subscribe( {
       next: (event: HttpEvent<OllamaResponse>) => {
         if(event.type === HttpEventType.DownloadProgress) {
           console.log((event as HttpDownloadProgressEvent).partialText);
@@ -61,6 +66,23 @@ export class GenerateComponent {
       },
       error: (error) => {
         console.log(error);
+      }
+    }); */
+    this.ollamaService.generateStreamedResponse(ollamaReq).subscribe({
+      next: (chunk: OllamaResponse) => {
+        if(pr.response === undefined)
+          pr.response = chunk;
+        else {
+          pr.response.response += chunk.response;
+          //pr.response.images = pr.response.images.concat(chunk.images);
+        }
+        console.log(chunk.response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: (): void => {
+        console.log('Streamed response completed');
       }
     });
   }
