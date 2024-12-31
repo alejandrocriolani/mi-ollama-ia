@@ -17,12 +17,13 @@ import { OllamaModel } from '../../models/ollama-model';
 export class Llama2Component implements OnInit {
 
   @Output() sendPromt = new EventEmitter<Llama2Data>();
+  @Output() sendStreamPromt = new EventEmitter<Llama2Data>();
 
   models: OllamaModel [] = [];
 
   formGroup: FormGroup = new FormGroup( {
       promtFC: new FormControl<string>('', [Validators.required, Validators.minLength(4)]),
-      tipoFC: new FormControl<string>('', [Validators.required])
+      modelFC: new FormControl<string>('', [Validators.required])
     }
   )
 
@@ -39,10 +40,20 @@ export class Llama2Component implements OnInit {
   submitPromt() {
     let data: Llama2Data ={
       prompt: this.formGroup.controls['promtFC'].value,
-      tipo: this.formGroup.controls['tipoFC'].value
+      model: this.formGroup.controls['modelFC'].value
     }
 
     this.formGroup.controls['promtFC'].setValue('');
     this.sendPromt.emit(data);
+  }
+
+  submitStreamedPromt() {
+    let data: Llama2Data ={
+      prompt: this.formGroup.controls['promtFC'].value,
+      model: this.formGroup.controls['modelFC'].value
+    }
+
+    this.formGroup.controls['promtFC'].setValue('');
+    this.sendStreamPromt.emit(data);
   }
 }

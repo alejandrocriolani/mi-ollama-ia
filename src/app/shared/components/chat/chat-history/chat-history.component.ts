@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { OllamaChat } from '../../../models/ollama-chat';
+//import { OllamaChat } from '../../../models/ollama-chat';
 import { LlamaHandleResponseService } from '../../../services/local-services/llama-handle-response.service';
 import { ResponseRoles } from '../../../enums/response-roles';
 import { ResponseType } from '../../../enums/response-type';
@@ -27,7 +27,8 @@ import { AnswersResultComponent } from '../answers-result/answers-result.compone
   styleUrl: './chat-history.component.scss'
 })
 export class ChatHistoryComponent {
-  @Input() messsages: OllamaChat [] = [];
+  //@Input() messsages: OllamaChat [] = [];
+  @Input() messsages: any [] = [];
 
   responseTypes = ResponseType;
   responeRol = ResponseRoles;
@@ -35,6 +36,7 @@ export class ChatHistoryComponent {
   constructor(private llamaHandleResponse: LlamaHandleResponseService) {}
 
   isResponseType(response: string, type: ResponseType) {
-    return this.llamaHandleResponse.isResponseType(response, type);
+    return false;
+    //return this.llamaHandleResponse.isResponseType(response, type);
   }
 }

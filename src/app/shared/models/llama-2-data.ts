@@ -1,4 +1,4 @@
 export interface Llama2Data {
-    tipo: string;
+    model: string;
     prompt: string;
 }

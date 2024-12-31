@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Llama2Content } from '../../models/llama-response/llama2-content';
-import { OllamaChatResponse } from '../../models/ollama-chat-response';
+//import { Llama2Content } from '../../models/llama-response/llama2-content';
+//import { OllamaChatResponse } from '../../models/ollama-chat-response';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class LlamaHandleResponseService {
 
   constructor() { }
 
-  parseResponse(content: string) : Llama2Content | undefined {
+/*   parseResponse(content: string) : Llama2Content | undefined {
     let cleanResponse: string = content.replaceAll("@type", "type");
     cleanResponse = cleanResponse.replaceAll("\\n", " ");
     cleanResponse = cleanResponse.replaceAll("\\t", " ");
@@ -48,5 +48,5 @@ export class LlamaHandleResponseService {
 
   isResponseType(response: string, type: ResponseType) {
     return response.toUpperCase() == type.toUpperCase();
-  }
+  } */
 }
